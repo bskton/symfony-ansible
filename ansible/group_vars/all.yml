@@ -2,7 +2,7 @@
 admin_user: ubuntu
 
 # Директория сайта
-site_root: /home/{{ admin_user }}/www
+site_root: /home/{{ admin_user }}/www"
 
 # IP адрес хостовой системы, на которой запущены виртуалки для разработки
 host_ip: 192.168.35.1

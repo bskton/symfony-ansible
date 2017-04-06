@@ -131,3 +131,25 @@ ubuntu@web:~/www$ php index.php
 Выполнение скрпта остановится на строке, в которой вы поставили точку остановки, эта строка отобразиться в Sublime.
 
 Для того чтобы завешить сеанс отладки, выберите в меню Tools -> Xdebug -> Stop Debugging (Close Windows)
+
+## Использование PHPUnit
+
+PHPUnit устанавливается автоматически на виртуальную машину web, при выполнении плэйбука main.yml.
+
+Для того чтобы запустить юнит-тесты, подключитесь по SSH к виртуальной машине web.
+
+```
+~/projects/web-dev$ vagrant ssh web
+```
+
+Перейдите в директорию `www` и вызовите `phpunit` с необходимыми агрументами
+
+```
+ubuntu@web:~/www$ phpunit --bootstrap src/Email.php tests/EmailTest
+```
+
+Если хотите увидеть процент покрытия кода юнит-тестами, выполните
+
+```
+ubuntu@web:~/www$ phpunit --coverage-text --whitelist src --bootstrap src/Email.php tests/EmailTest
+```

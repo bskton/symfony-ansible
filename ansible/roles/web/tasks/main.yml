@@ -46,3 +46,11 @@
     owner: "{{ admin_user }}"
     group: "{{ admin_user }}"
     mode: 0750
+
+- name: Install PHPUnit
+  copy:
+    src: phpunit.phar
+    dest: /usr/local/bin/phpunit
+    owner: "{{ admin_user }}"
+    group: "{{ admin_user }}"
+    mode: 0555
