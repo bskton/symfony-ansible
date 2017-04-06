@@ -102,3 +102,32 @@ ubuntu@web:~/www$ php index.php
 ```
 
 Должен начать выполняться скрип и остановиться на строке, где вы поставили точку остановки в Sublime.
+
+Для того чтобы завешить сеанс отладки, выберите в меню Tools -> Xdebug -> Stop Debugging (Close Windows)
+
+#### Отладка из браузера
+
+Отредактируйте настройки Xdebug в Sublime, выберите в меню Tools -> Xdebug -> Settings-User, и отредактируйте их следующим образом
+
+```
+{
+  "path_mapping": {
+    "/home/ubuntu/www": "D:/path/to/sripts",
+  },
+  "settings": {
+    "xdebug": {
+      "url": "http://192.168.35.10/",
+    }
+  }
+}
+```
+
+где D:/path/to/sripts - путь к php-скриптам на хостовой машине.
+
+Поставьте точку остановки в php-скрипте. В меню Sublime выберите Tools -> Xdebug -> Start Debugging
+
+Откройте в бразуре ссылку http://192.168.35.10/?XDEBUG_SESSION_START=sublime.xdebug
+
+Выполнение скрпта остановится на строке, в которой вы поставили точку остановки, эта строка отобразиться в Sublime.
+
+Для того чтобы завешить сеанс отладки, выберите в меню Tools -> Xdebug -> Stop Debugging (Close Windows)
