@@ -1,0 +1,5 @@
+# Имя пользователя с административными правами
+admin_user: ubuntu
+
+# Директория сайта
+site_root: /home/{{ admin_user }}/www

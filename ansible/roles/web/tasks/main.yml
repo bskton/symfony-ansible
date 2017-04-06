@@ -1,0 +1,24 @@
+---
+- name: Install nginx
+  apt: name=nginx state=latest
+  notify: restart nginx
+
+- name: Copy nginx configuration for host
+  template:
+    src: www.conf
+    dest: /etc/nginx/sites-available/www.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx
+
+- name: Create symlink for nginx configuration
+  file: src=/etc/nginx/sites-available/www.conf
+        dest=/etc/nginx/sites-enabled/default owner=root group=root state=link
+  notify: restart nginx
+
+- name: Install php-fpm
+  apt: name=php-fpm state=latest
+  notify:
+    - restart php-fpm
+    - restart nginx
