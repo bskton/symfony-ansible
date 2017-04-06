@@ -171,3 +171,17 @@ ubuntu@web:~/www$ phpdoc -d ./src -t ./docs
 ```
 
 Сгенерированную документацию можно посмотреть черезе браузер, открыв на хостовой машине файл www/docs/index.html
+
+## Использование Composer
+
+Для того чтобы установить зависимости с помощью Сomposer, подключитесь по SSH к виртуальной машине web.
+
+```
+~/projects/web-dev$ vagrant ssh web
+```
+
+Перейдите в директорию `www` и выполните `composer install`
+
+```
+ubuntu@web:~/www$ composer install
+```
