@@ -69,9 +69,9 @@ Xdebug устанавливается на виртуальную машину w
 
 ```
 {
-	"path_mapping": {
-		"/home/ubuntu/www": "D:/path/to/sripts",
-	}
+  "path_mapping": {
+    "/home/ubuntu/www": "D:/path/to/sripts",
+  }
 }
 ```
 
