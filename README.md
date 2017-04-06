@@ -19,14 +19,15 @@
 
 ### Склонировать репозиторий
 
-```bash
+```
 ~/projects$ git clone ssh://git@git.prp.ru:7999/web/web-dev.git
 ```
 
-### Запустить виртуальные 
+### Запустить виртуальные машины
 
 Перейтив директорию проекта и запустить виртуальные машины
-```bash
+
+```
 ~/projects$ cd web-dev/
 ~/projects/web-dev$ vagrant up
 ```
@@ -34,12 +35,14 @@
 ### Настроить виртуальную машину с помощью Ansible
 
 Подключиться к виртуальной машине ansible
-```bash
+
+```
 ~/projects/web-dev$ vagrant ssh ansible
 ```
 
 Перейти в директорию ansible и запустить плэйбук main.yml
-```bash
+
+```
 ubuntu@ansible:~$ cd ansible/
 ubuntu@ansible:~/ansible$ ansible-playbook main.yml
 ```
