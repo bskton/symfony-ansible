@@ -1,0 +1,7 @@
+{
+  "name": "monastirev/webdev",
+  "description": "Пример кода для тучебного проекта",
+  "require": {
+    "monolog/monolog": "1.0.*"
+  }
+}
