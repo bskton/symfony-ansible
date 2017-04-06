@@ -7,8 +7,6 @@
   template:
     src: www.conf
     dest: /etc/nginx/sites-available/www.conf
-    owner: root
-    group: root
     mode: 0644
   notify: restart nginx
 
@@ -34,8 +32,6 @@
   template:
     src: xdebug.ini
     dest: /etc/php/7.0/mods-available/xdebug.ini
-    owner: root
-    group: root
     mode: 0644
   notify: restart php-fpm
 
@@ -43,14 +39,35 @@
   file:
     path: /vagrant/log
     state: directory
-    owner: "{{ admin_user }}"
-    group: "{{ admin_user }}"
-    mode: 0750
+    mode: 0755
 
 - name: Install PHPUnit
   copy:
     src: phpunit.phar
     dest: /usr/local/bin/phpunit
-    owner: "{{ admin_user }}"
-    group: "{{ admin_user }}"
     mode: 0555
+
+- name: Create phpdoc directory
+  file:
+    path: "{{ phpdoc_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Extract phpDocumentor
+  unarchive:
+    src: phpDocumentor.tgz
+    dest: "{{ phpdoc_dir }}"   
+    mode: 0555
+    keep_newer: yes
+
+- name: Create symlink for phpdoc
+  file:
+    src: "{{ phpdoc_dir }}/phpDocumentor-{{ phpdoc_version }}/bin/phpdoc"
+    dest: /usr/local/bin/phpdoc
+    state: link
+
+# Требуется для запуска phpdoc
+- name: Install php-dom
+  apt: name=php-dom state=latest
+  notify:
+    - restart php-fpm 

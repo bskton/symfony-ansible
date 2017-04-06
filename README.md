@@ -153,3 +153,21 @@ ubuntu@web:~/www$ phpunit --bootstrap src/Email.php tests/EmailTest
 ```
 ubuntu@web:~/www$ phpunit --coverage-text --whitelist src --bootstrap src/Email.php tests/EmailTest
 ```
+
+## Использование phpDocumentor
+
+phpDocumentor устанавливается автоматически на виртуальную машину web, при выполнении плэйбука main.yml.
+
+Для того чтобы сгенерировать документацию, подключитесь по SSH к виртуальной машине web.
+
+```
+~/projects/web-dev$ vagrant ssh web
+```
+
+Перейдите в директорию `www` и вызовите `phpdoc` с необходимыми агрументами
+
+```
+ubuntu@web:~/www$ phpdoc -d ./src -t ./docs
+```
+
+Сгенерированную документацию можно посмотреть черезе браузер, открыв на хостовой машине файл www/docs/index.html

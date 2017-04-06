@@ -1,8 +1,14 @@
 # Имя пользователя с административными правами
 admin_user: ubuntu
 
+admin_home: /home/{{ admin_user }}
+
+phpdoc_dir: "{{ admin_home }}/phpdoc"
+
+phpdoc_version: "2.9.0"
+
 # Директория сайта
-site_root: /home/{{ admin_user }}/www"
+site_root: "{{ admin_home }}/www"
 
 # IP адрес хостовой системы, на которой запущены виртуалки для разработки
 host_ip: 192.168.35.1
