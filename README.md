@@ -12,3 +12,38 @@
  * VirtualBox 5.1.12
  * Git version 2.7.4.windows.1
  * Vagrant 1.9.3
+
+ ## Использование
+
+ Все команды выполняются через Git Bash в директории projects, которая расположена в домашней директории пользователя.
+
+ ### Склонировать репозиторий
+
+```bash
+~/projects$ git clone ssh://git@git.prp.ru:7999/web/web-dev.git
+```
+
+### Запустить виртуальные 
+
+Перейтив директорию проекта и запустить виртуальные машины
+```bash
+~/projects$ cd web-dev/
+~/projects/web-dev$ vagrant up
+```
+
+### Настроить виртуальную машину с помощью Ansible
+
+Подключиться к виртуальной машине ansible
+```bash
+~/projects/web-dev$ vagrant ssh ansible
+```
+
+Перейти в директорию ansible и запустить плэйбук main.yml
+```bash
+ubuntu@ansible:~$ cd ansible/
+ubuntu@ansible:~/ansible$ ansible-playbook main.yml
+```
+
+### Открыть в браузере сайт
+
+Перейти по ссылке http://192.168.35.10/
