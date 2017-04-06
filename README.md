@@ -52,3 +52,46 @@ ubuntu@ansible:~/ansible$ ansible-playbook main.yml
 Перейти по ссылке http://192.168.35.10/
 
 Должна открыться страница с текстом `"Привет, Web!"`.
+
+## Настройка Xdebug
+
+Xdebug устанавливается на виртуальную машину web, но чтобы им пользоваться надо настроить свою IDE или текстовый редактор, умеющий работать с Xdebug.
+
+### Настройка Sublime Text
+
+#### Отладка из консоли
+
+На примере Sublime Text 3 Build 3125. Для него должен быть установлен [Package Control](https://packagecontrol.io/installation).
+
+В Sublime нажvbnt Ctrl+Shift+P, наберите `install package` и нажмите Enter. Затем наберите `xdebug client` и нажмите Enter.
+
+Отредактируйте настройки в Sublime. Выберите в меню Tools -> Xdebug -> Settings-User и укажите в нем
+```
+{
+	"path_mapping": {
+		"/home/ubuntu/www": "D:/path/to/sripts",
+	}
+}
+```
+У меня на хостовой машине php-скрипты лежать в папке D:\path\to\sripts, поэтому надо указать в Settings-User "D:/path/to/sripts". Укажите вместо этого пути свой.
+
+Подключитесь по SSH к виртуалной машине web
+```
+~/projects/web-dev$ vagrant ssh web
+```
+
+Создайте переменную окружения XDEBUG_CONFIG
+```
+ubuntu@web:~$ export XDEBUG_CONFIG="idekey=sublime.xdebug"
+```
+Эта переменная окружения удаляется, когда вы завершаете SSH соединение с web или перезагружаете ее.
+
+Поставьте точку остановки в скрипте www/index.php
+
+В меню Sublime выберите Tools -> Xdebug -> Start Debugging
+
+На виртуальной машине web выполните
+```
+ubuntu@web:~/www$ php index.php
+```
+Должен начать выполняться скрип и остановиться на строке, где вы поставили точку остановки в Sublime.

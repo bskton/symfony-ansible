@@ -22,3 +22,27 @@
   notify:
     - restart php-fpm
     - restart nginx
+
+- name: Copy php-fpm configuration for host
+  copy: src=php.ini dest=/etc/php/7.0/fpm/ owner=root group=root mode=0644
+  notify: restart php-fpm
+
+- name: Install php-xdebug
+  apt: name=php-xdebug state=latest
+
+- name: Copy xdebug configuration file
+  template:
+    src: xdebug.ini
+    dest: /etc/php/7.0/mods-available/xdebug.ini
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart php-fpm
+
+- name: Сreate log directory if it doesn't exist
+  file:
+    path: /vagrant/log
+    state: directory
+    owner: "{{ admin_user }}"
+    group: "{{ admin_user }}"
+    mode: 0750
